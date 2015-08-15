@@ -1,10 +1,19 @@
 
-extends Node2D
+extends VBoxContainer
 
-export var up_speed = 10
+export var up_speed = 1
 
 func _ready():
-	set_process (true)
+	set_process_input (true)
 
-func _process (delta):
-	translate (Vector2 (0, -up_speed * delta))
+# hora que clicar, bora pro escritório
+func _input(event):
+	if event.is_action ("ui_accept"):
+		vaiProEscritorio ()
+
+# hora que a animação acabar, bora pro escritório
+func _on_AnimationPlayer_finished():
+	vaiProEscritorio ()
+
+func vaiProEscritorio ():
+	get_tree ().change_scene ("res://escritorio.scn")
