@@ -1,13 +1,11 @@
 
 extends Node2D
 
-
-export var ponteiroRotationSpeed = -0.5
-
-
 func _ready():
-	set_process (true)
+	#set_process (true)
+	set_process_input (true)
 
-func _process(delta):
-	get_node ("PonteiroHora").rotate (ponteiroRotationSpeed * delta)
+func _input(event):
+	if event.is_action ("ui_accept") and event.is_pressed ():
+		get_node ("PonteiroHora").me_gire ()
 
