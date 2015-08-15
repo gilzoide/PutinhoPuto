@@ -14,7 +14,7 @@ func _input(event):
 		get_node ("PonteiroHora").me_gire ()
 
 # Botão que toca um morse
-func _on_Play_pressed():
+func _on_Play_pressed ():
 	get_node ("Perguntas/SamplePlayer").tocaFrase (historia.get_atual ()['mensagem'])
 
 func _on_TextEdit_text_changed():
