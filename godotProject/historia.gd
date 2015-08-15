@@ -5,6 +5,9 @@ const NADA = 0
 const MORTE = 1
 const MANDAR_MSG = 2
 
+# Em qual passo da história estamos?
+var atual = 0
+
 # Lista de passos da história
 var historia = [
 	{
@@ -56,3 +59,7 @@ var historia = [
 		mensagem = 'COMUNICACAOABERTA'
 	}
 ]
+
+
+func get_atual ():
+	return historia[atual]

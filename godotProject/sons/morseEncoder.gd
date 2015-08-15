@@ -5,32 +5,32 @@ const DOT = 0
 const DASH = 1
 
 var dic = {
-	a = [DOT, DASH],
-	b = [DASH, DOT, DOT, DOT],
-	c = [DASH, DOT, DASH, DOT],
-	d = [DASH, DOT, DOT],
-	e = [DOT],
-	f = [DOT, DOT, DASH, DOT],
-	g = [DASH, DASH, DOT],
-	h = [DOT, DOT, DOT, DOT],
-	i = [DOT, DOT],
-	j = [DOT, DASH, DASH, DASH],
-	k = [DASH, DOT, DASH],
-	l = [DOT, DASH, DOT, DOT],
-	m = [DASH, DASH],
-	n = [DASH, DOT],
-	o = [DASH, DASH, DASH],
-	p = [DOT, DASH, DASH, DOT],
-	q = [DASH, DASH, DOT, DASH],
-	r = [DOT, DASH, DOT],
-	s = [DOT, DOT, DOT],
-	t = [DOT],
-	u = [DOT, DOT, DASH],
-	v = [DOT, DOT, DOT, DASH],
-	w = [DOT, DASH, DASH],
-	x = [DASH, DOT, DOT, DASH],
-	y = [DASH, DOT, DASH, DASH],
-	z = [DASH, DASH, DOT, DOT],
+	A = [DOT, DASH],
+	B = [DASH, DOT, DOT, DOT],
+	C = [DASH, DOT, DASH, DOT],
+	D = [DASH, DOT, DOT],
+	E = [DOT],
+	F = [DOT, DOT, DASH, DOT],
+	G = [DASH, DASH, DOT],
+	H = [DOT, DOT, DOT, DOT],
+	I = [DOT, DOT],
+	J = [DOT, DASH, DASH, DASH],
+	K = [DASH, DOT, DASH],
+	L = [DOT, DASH, DOT, DOT],
+	M = [DASH, DASH],
+	N = [DASH, DOT],
+	O = [DASH, DASH, DASH],
+	P = [DOT, DASH, DASH, DOT],
+	Q = [DASH, DASH, DOT, DASH],
+	R = [DOT, DASH, DOT],
+	S = [DOT, DOT, DOT],
+	T = [DOT],
+	U = [DOT, DOT, DASH],
+	V = [DOT, DOT, DOT, DASH],
+	W = [DOT, DASH, DASH],
+	X = [DASH, DOT, DOT, DASH],
+	Y = [DASH, DOT, DASH, DASH],
+	Z = [DASH, DASH, DOT, DOT],
 	'1' : [DOT, DASH, DASH, DASH, DASH],
 	'2' : [DOT, DOT, DASH, DASH, DASH],
 	'3' : [DOT, DOT, DOT, DASH, DASH],
@@ -44,18 +44,17 @@ var dic = {
 }
 
 
-func _ready():
-	tocaLetra('6')
-
 func tocaEspera (nome):
 	play (nome)
 	# Espera acabar (feião, mas...)
 	while is_active():
 		pass
 
+# Toca uma letra em morse
 func tocaLetra(letra):
+	# pega o vetor de DOT/DASHs
 	var vetor = dic[letra]
-	
+	# e, pra cada toque, toca
 	for toque in vetor:
 		if toque == DASH:
 			tocaEspera("dash")
@@ -63,8 +62,8 @@ func tocaLetra(letra):
 			tocaEspera("dot")
 		tocaEspera("bip gap")
 	tocaEspera("letter gap")
-	
+
+# Toca uma frase em morse
 func tocaFrase(frase):
-	pass
-	for letra in frase:
-		tocaLetra(letra)
+	for i in range(frase.length()):
+		tocaLetra(frase[i])
