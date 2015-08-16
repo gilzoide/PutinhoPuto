@@ -91,8 +91,11 @@ var historia = [
 	}
 ]
 
-var atual = 0
+# Pedaço atual da história
+var atual = 5
+# flag, se tá na penúltima e omitiu
 var vou_morrer = false
+# dicionário auxiliar pra última fase se `vou_morrer'
 var morreu_na_ultima = {}
 
 # Pega a historinha atual
@@ -101,7 +104,10 @@ func get_atual():
 
 # Pega índice da historinha atual
 func get_atual_index ():
-	return atual
+	if atual < historia.size():
+		return atual
+	else:
+		return -1
 
 # Responde R1, R2 ou R3
 func responde (resp):
@@ -125,6 +131,7 @@ func responde (resp):
 		var porta = get_node('../PortaAberta')
 		porta.get_node("Perdeu/Label").set_text(hist[resp + 'msg'] + '\nVOCÊ MORREU')
 		porta.show ()
+		get_node('/root/ContMortes').incMorte ()
 		return
 	# general reclamão
 	elif hist[resp] == GENERAL:
@@ -134,7 +141,6 @@ func responde (resp):
 	elif hist[resp] == MANDAR_MSG:
 		get_node('../Respostas').hide()
 		var perguntas = get_node('../Perguntas')
-		perguntas.get_node("Play").set_disabled(true)
 		perguntas.get_node("Caixa").set_text('')
 		perguntas.get_node("Enter").connect("pressed", self, 'mandouMensagem')
 		perguntas.show()
@@ -144,7 +150,12 @@ func responde (resp):
 		vou_morrer = true
 	# ganhou!
 	elif hist[resp] == VIVEU:
-		get_tree ().change_scene ('res://ganhou.scn')
+		var porta = get_node('../PortaAberta')
+		var imagem = ImageTexture.new()
+		imagem.load('res://SUPER FLANGO.png')
+		porta.get_node("Perdeu/Cara").set_texture(imagem)
+		porta.get_node("Perdeu/Label").set_text('SUPER FLANGO TE SALVOU\nE TE DEU UM PASTEL')
+		porta.show()
 	else:
 		get_node("../ZZZ").show()
 	proxima ()
