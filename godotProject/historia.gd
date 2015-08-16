@@ -172,9 +172,26 @@ func proxima ():
 
 # Callback de mandar mensagem
 func mandouMensagem():
+	var msg = get_node('../Perguntas/Caixa').get_text().to_upper()
+	# easter eggs
+	if msg == 'EASTEREGG':
+		vaiOvoEuEscolhoVoce('EGG')
+	elif msg == 'GGERETSAE':
+		vaiOvoEuEscolhoVoce('GGE')
+	elif msg == 'PICCARO':
+		vaiOvoEuEscolhoVoce('PICCARO')
+	elif msg == 'PUTAO':
+		vaiOvoEuEscolhoVoce('PUTAO')
 	# não mandou SOS, morre diabo!
-	if get_node('../Perguntas/Caixa').get_text().to_upper() != 'SOS':
+	if msg != 'SOS':
 		vou_morrer = true
 	# desconecta callback
 	get_node('../Perguntas/Enter').disconnect("pressed", self, 'mandouMensagem')
 	proxima()
+
+func vaiOvoEuEscolhoVoce (nomePng):
+	var ovo = get_node('../Ovo')
+	var imagem = ImageTexture.new()
+	imagem.load ('res://' + nomePng + '.png')
+	ovo.set_normal_texture(imagem)
+	ovo.show()
