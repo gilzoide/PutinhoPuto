@@ -7,7 +7,8 @@ func _ready():
 	historia = get_node ("Historia")
 
 func _on_Play_pressed():
-	get_node ("Perguntas/SamplePlayer").toca (historia.get_atual_index ())
+	get_node("ZZZ").hide()
+	get_node ("Perguntas/Play/Morse").toca (historia.get_atual_index ())
 
 func _on_Enter_pressed():
 	# pega mensagem da caixa de texto, normalizada
