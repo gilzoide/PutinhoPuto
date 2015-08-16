@@ -92,7 +92,7 @@ var historia = [
 ]
 
 # Pedaço atual da história
-var atual = 5
+var atual = 0
 # flag, se tá na penúltima e omitiu
 var vou_morrer = false
 # dicionário auxiliar pra última fase se `vou_morrer'
